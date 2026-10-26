@@ -27,7 +27,7 @@ Better Auth + SQLite (`better-sqlite3`), pages `/inscription` et `/connexion`, d
 `/app` : réglages à gauche, aperçu à droite (variables CSS posées sur son conteneur), HEX invalide signalé sans écraser la valeur, couleur au hasard, export : copie et téléchargement de `variables.css`.
 **Terminé quand** chaque réglage change l'aperçu immédiatement, le texte copié = le texte téléchargé = `buildCss(kit)`, l'outil reste utilisable à 375 px ; capture mobile + desktop.
 
-## 7. [ ] Kits enregistrés
+## 7. [x] Kits enregistrés
 Table `kits`, liste des kits du compte, créer / ouvrir / renommer / supprimer, sauvegarde automatique.
 **Terminé quand** un kit retrouvé tel quel après actualisation et reconnexion ; un test prouve qu'un utilisateur ne peut ni lire ni modifier le kit d'un autre.
 

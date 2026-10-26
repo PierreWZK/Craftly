@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { DEFAULT_KIT, FONTS, type BrandKit } from "../src/lib/brand-kit";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createMyKit, deleteMyKit, saveMyKit } from "../app/app/actions";
+import { FONTS, type BrandKit } from "../src/lib/brand-kit";
+import type { KitSummary } from "../src/lib/kits";
 import {
   COLOR_LABELS,
   type ColorKey,
@@ -28,12 +31,50 @@ const button =
 
 const COLOR_KEYS = Object.keys(COLOR_LABELS) as ColorKey[];
 
-export function KitEditor() {
-  const [kit, setKit] = useState<BrandKit>(DEFAULT_KIT);
+type Props = { kitId: string; initialKit: BrandKit; kits: KitSummary[] };
+
+export function KitEditor({ kitId, initialKit, kits }: Props) {
+  const router = useRouter();
+  const [kit, setKit] = useState<BrandKit>(initialKit);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string | null>>({});
   const [copied, setCopied] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"saved" | "saving" | "error">("saved");
+  const [busy, setBusy] = useState(false);
+  const saved = useRef(initialKit);
+
+  // Sauvegarde automatique : 800 ms après la dernière modification valide.
+  useEffect(() => {
+    if (kit === saved.current) return;
+    setStatus("saving");
+    const timer = setTimeout(async () => {
+      const ok = await saveMyKit(kitId, kit);
+      if (!ok) {
+        setStatus("error");
+        return;
+      }
+      const renamed = kit.name !== saved.current.name;
+      saved.current = kit;
+      setStatus("saved");
+      // Le nom apparaît dans la liste des kits : on relit les données du serveur.
+      if (renamed) router.refresh();
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [kit, kitId, router]);
+
+  async function newKit() {
+    setBusy(true);
+    const id = await createMyKit();
+    router.push(`/app?kit=${id}`);
+  }
+
+  async function removeKit() {
+    if (!window.confirm(`Supprimer le kit « ${kit.name} » ? Cette action est définitive.`)) return;
+    setBusy(true);
+    await deleteMyKit(kitId);
+    router.push("/app");
+  }
 
   /** Une saisie invalide signale l'erreur sur son champ, sans toucher au kit. */
   function apply(field: string, result: Result) {
@@ -111,7 +152,34 @@ export function KitEditor() {
   }
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)] gap-2 md:grid-cols-12">
+    <div className="flex flex-col gap-2">
+      <nav aria-label="Mes kits" className="flex flex-wrap items-center gap-2 rounded-[var(--radius)] bg-tile p-3 text-sm">
+        {kits.map((k) => (
+          <a
+            key={k.id}
+            href={`/app?kit=${k.id}`}
+            aria-current={k.id === kitId ? "page" : undefined}
+            className="rounded-full px-4 py-2 font-semibold transition duration-[var(--duration-hover)]"
+            style={
+              k.id === kitId
+                ? { background: "var(--color-accent)", color: "var(--color-accent-ink)" }
+                : { color: "var(--color-ink)", background: "var(--color-bg)" }
+            }
+          >
+            {k.id === kitId ? kit.name : k.name}
+          </a>
+        ))}
+        <button type="button" onClick={newKit} disabled={busy} className="rounded-full border-2 px-4 py-2 font-semibold disabled:opacity-60" style={{ borderColor: "var(--color-accent)", color: "var(--color-ink)" }}>
+          Nouveau kit
+        </button>
+        <button type="button" onClick={removeKit} disabled={busy} className="rounded-full px-4 py-2 font-semibold text-muted hover:text-ink disabled:opacity-60">
+          Supprimer ce kit
+        </button>
+        <p role="status" className="ml-auto text-sm text-muted">
+          {status === "saving" ? "Enregistrement…" : status === "error" ? "Enregistrement impossible : vérifiez les champs." : "Enregistré automatiquement"}
+        </p>
+      </nav>
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-2 md:grid-cols-12">
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-6 rounded-[var(--radius)] bg-tile p-5 text-ink md:col-span-5 md:p-6">
         <fieldset className={section} style={sectionStyle}>
           <legend className="font-display text-lg font-extrabold">Projet</legend>
@@ -232,6 +300,7 @@ export function KitEditor() {
         <p className="text-sm font-semibold text-muted">Aperçu en direct</p>
         <KitPreview kit={kit} />
         <pre className="overflow-x-auto whitespace-pre-wrap rounded-[var(--radius)] bg-bg p-4 text-sm text-ink">{exportText(kit)}</pre>
+      </div>
       </div>
     </div>
   );

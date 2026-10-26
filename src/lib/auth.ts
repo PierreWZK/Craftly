@@ -4,6 +4,7 @@ import Database from "better-sqlite3";
 import { betterAuth } from "better-auth";
 import { getMigrations } from "better-auth/db/migration";
 import { nextCookies } from "better-auth/next-js";
+import { createKitsTable } from "./kits";
 
 export type AuthOptions = { dbPath: string; secret: string; baseURL: string };
 
@@ -22,7 +23,8 @@ export async function createAuth({ dbPath, secret, baseURL }: AuthOptions) {
   };
   const { runMigrations } = await getMigrations(options);
   await runMigrations();
-  return { auth: betterAuth(options), close: () => db.close() };
+  createKitsTable(db);
+  return { auth: betterAuth(options), db, close: () => db.close() };
 }
 
 export type AuthHandle = Awaited<ReturnType<typeof createAuth>>;
@@ -31,9 +33,13 @@ export type Auth = AuthHandle["auth"];
 let instance: Promise<AuthHandle> | undefined;
 
 /** Instance partagée de l'application, configurée par l'environnement. */
-export function getAuth(): Promise<Auth> {
+export function getAuthHandle(): Promise<AuthHandle> {
   instance ??= createAuth(readConfig());
-  return instance.then((handle) => handle.auth);
+  return instance;
+}
+
+export async function getAuth(): Promise<Auth> {
+  return (await getAuthHandle()).auth;
 }
 
 function readConfig(): AuthOptions {
