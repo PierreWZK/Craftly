@@ -11,7 +11,7 @@ Vitest installé, `npm test` = `vitest run`. `design/tokens.css` branché dans `
 Type `BrandKit`, kit par défaut, `parseHex` (valide / normalise), `randomColor`, `buildCss(kit)`.
 **Terminé quand** les tests couvrent : HEX court et long, HEX invalide rejeté, CSS généré contenant chaque variable attendue, sortie identique pour un même kit.
 
-## 3. [ ] Vitrine « Planche »
+## 3. [x] Vitrine « Planche »
 Refonte de `/` avec les tokens : héros en tuiles (nom en bandeau, phrase, action carmin « Créer un compte »), exemple de charte complète d'un client fictif rendu par `buildCss`, fonctionnement en trois temps, gratuit, FAQ, appel final, pied de page avec lien « 30 jours, 30 projets ». Apparitions au scroll légères.
 **Terminé quand** aucune barre de défilement horizontale à 375 px et à 1440 px, aucun violet ni dégradé, capture mobile + desktop.
 

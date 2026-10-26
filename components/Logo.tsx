@@ -7,7 +7,8 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
-export function Logo({ size = "text-2xl" }: { size?: string }) {
+// Tailles explicites : text-xl et text-2xl sont remappés par design/tokens.css (titres, bandeau).
+export function Logo({ size = "text-[1.5rem]" }: { size?: string }) {
   return (
     <span className={`inline-flex items-center gap-2 font-extrabold tracking-tight text-ink ${size}`}>
       <LogoMark className="h-[1.15em] w-[1.15em]" />
