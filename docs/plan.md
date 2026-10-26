@@ -31,7 +31,7 @@ Better Auth + SQLite (`better-sqlite3`), pages `/inscription` et `/connexion`, d
 Table `kits`, liste des kits du compte, créer / ouvrir / renommer / supprimer, sauvegarde automatique.
 **Terminé quand** un kit retrouvé tel quel après actualisation et reconnexion ; un test prouve qu'un utilisateur ne peut ni lire ni modifier le kit d'un autre.
 
-## 8. [ ] Mise en ligne
+## 8. [~] Mise en ligne (préparée en local ; déploiement en attente)
 `Dockerfile` (sortie `standalone`), volume persistant pour SQLite, variables `BETTER_AUTH_SECRET` et `BETTER_AUTH_URL` sur Coolify, déploiement de la branche principale.
 **Terminé quand** `https://craftly.projectp.fr` répond 200, un compte créé survit à un redéploiement.
 
