@@ -7,7 +7,7 @@
 Vitest installé, `npm test` = `vitest run`. `design/tokens.css` branché dans `app/globals.css` (thème Tailwind), polices Bricolage Grotesque + Schibsted Grotesk via `next/font`, Plus Jakarta et le violet retirés.
 **Terminé quand** `npm test -- --silent` passe (un test de fumée) et `npm run build` réussit.
 
-## 2. [ ] Le cœur : `src/lib/`
+## 2. [x] Le cœur : `src/lib/`
 Type `BrandKit`, kit par défaut, `parseHex` (valide / normalise), `randomColor`, `buildCss(kit)`.
 **Terminé quand** les tests couvrent : HEX court et long, HEX invalide rejeté, CSS généré contenant chaque variable attendue, sortie identique pour un même kit.
 
