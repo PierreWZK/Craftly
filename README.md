@@ -6,7 +6,22 @@ Un outil pour freelances et petites agences : on saisit les couleurs, les typogr
 
 📄 Les règles détaillées sont dans le [cahier des charges](CAHIER_DES_CHARGES.md).
 
+## But
+
+Faire comprendre l'outil en quelques secondes, puis faire passer le visiteur à l'action : créer son compte et commencer un kit.
+
+## Public
+
+Freelances et petites agences (web, design, communication) qui montent la charte graphique de leurs clients et veulent ne pas refaire les mêmes styles de base à chaque projet.
+
+## Ce qui donne envie
+
+**Un exemple de charte complète**, visible dès la page d'accueil : couleurs, typographies, composants et `variables.css` d'un client fictif. C'est lui qui doit convaincre de créer un compte.
+
 ## Au programme
+
+- **Page vitrine** : présentation de l'outil, exemple de charte complète, appel à l'action « Créer un compte ».
+- **Comptes** : inscription et connexion, pour retrouver ses kits.
 
 - Projet client : nom du projet, nom du client, description facultative.
 - Couleurs principale, secondaire, d'accent, de fond et de texte, en HEX ou au sélecteur natif.
@@ -21,6 +36,7 @@ Un outil pour freelances et petites agences : on saisit les couleurs, les typogr
 ```bash
 npm install
 npm run dev                  # http://localhost:3000
+npm run build && npm start   # version de production
 ```
 
 ## Mise en ligne

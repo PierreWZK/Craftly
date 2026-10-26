@@ -23,7 +23,7 @@ Un outil pour freelances et petites agences : on saisit les couleurs, les typogr
 ### Périmètre volontairement limité
 
 - Une seule page `/` : réglages à gauche, aperçu à droite.
-- Pas de compte, pas d'API, pas de base de données.
+- ~~Pas de compte, pas d'API, pas de base de données.~~ Décision du 26/10 : comptes utilisateurs (inscription, connexion) ; la page vitrine et son exemple de charte complète doivent donner envie de créer un compte. Stockage et authentification à trancher à l'étape spec.
 - Un seul kit à la fois (plusieurs kits en bonus).
 
 ## 3. Cahier des charges fonctionnel
@@ -72,6 +72,11 @@ Le MVP fonctionne, les critères de la section 5 sont cochés, le site est en li
 
 1. **Le jeu quotidien.** Chaque projet a un jeu du jour pour faire revenir les visiteurs : le même tirage pour tout le monde (d'après la date), une tentative par jour, une série 🔥 et un résultat à partager. Me proposer deux ou trois idées adaptées au projet, puis attendre mon choix.
 2. **Le look.** Me demander une référence visuelle sur laquelle se baser (un site, une marque, une ambiance, une capture). Le site doit être original et agréable à regarder, **pas « basique »** : une vraie identité (typographie, palette, mise en page, détails, animations), pas un gabarit générique. Si je n'ai pas d'idée, me proposer deux directions et attendre mon choix.
+
+### Réponses (26/10)
+
+1. Jeu quotidien : **la teinte du jour**. Une couleur, la même pour tous, à retrouver en HEX en 5 essais ; indice par canal (rouge, vert, bleu) trop haut ou trop bas.
+2. Look : direction **B « Planche »** (design/moodboard.html) : tuiles bord à bord, fond nuit, craie, carmin `#B11226` ; Bricolage Grotesque + Schibsted Grotesk. Jetons dans `design/tokens.css`.
 
 ## 9. Aperçu du lien (à faire sans me le redemander)
 

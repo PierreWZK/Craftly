@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Craftly · Moodboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Schibsted+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.5 "Instrument Sans", system-ui, sans-serif; background: #e9e9e4; color: #1d1d1d; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 48px 24px 96px; }
+  .intro h1 { font: 800 clamp(36px, 5vw, 56px)/1 "Archivo", sans-serif; letter-spacing: -0.02em; }
+  .intro p { max-width: 640px; margin-top: 16px; font-size: 18px; }
+  .dir { margin-top: 96px; }
+  .dir > header { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 32px; }
+  .dir > header h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.05; }
+  .dir > header p { font-size: 19px; max-width: 760px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1.6fr 1fr; } }
+  .box { border-radius: 14px; overflow: hidden; }
+  .meta { padding: 24px; display: grid; gap: 24px; background: #fff; }
+  .meta h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+  .chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .chip span { display: block; aspect-ratio: 1; border-radius: 8px; }
+  .chip b { display: block; margin-top: 6px; font-size: 13px; }
+  .chip i { font-style: normal; font-size: 12px; color: #555; }
+  .spec { font-size: 15px; }
+  .spec .big { display: block; font-size: 44px; line-height: 1; margin-bottom: 6px; }
+
+  /* ---------- A : Nuancier ---------- */
+  .a { --bg: #f4f4f0; --ink: #232323; --mint: #a1ffcb; --grey: #c9c9c2; }
+  .a .disp { font-family: "Archivo", sans-serif; font-weight: 800; font-stretch: 62%; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.86; }
+  .a-hero { background: var(--bg); color: var(--ink); padding: 20px 24px 28px; min-height: 460px; display: flex; flex-direction: column; }
+  .a-nav { display: flex; justify-content: space-between; font-size: 13px; }
+  .a-nav b { font-family: "Archivo"; font-weight: 800; font-size: 16px; }
+  .a-nav span { display: flex; gap: 20px; }
+  .a-line { margin: auto 0; font-size: clamp(54px, 8.4vw, 112px); }
+  .a-line .swatch { font-size: inherit; display: inline-flex; align-items: flex-end; vertical-align: baseline; width: 1.7em; height: 0.72em; margin: 0 0.06em; padding: 0.05em 0.08em; border: 0; border-radius: 0; background: var(--mint); color: var(--ink); cursor: pointer; transition: background-color .35s ease, transform .15s ease; }
+  .a-line .swatch:active { transform: scale(0.96); }
+  .a-line .swatch small { font: 600 max(11px, 0.15em)/1 "Instrument Sans", sans-serif; letter-spacing: 0; text-transform: none; }
+  .a-foot { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .a-foot p { max-width: 380px; font-size: 16px; }
+  .a-btn { background: var(--ink); color: #fff; border: 0; padding: 14px 22px; font: 600 15px "Instrument Sans"; cursor: pointer; transition: transform .15s ease; }
+  .a-btn:active { transform: scale(0.97); }
+  .a-card { background: var(--ink); color: #fff; padding: 24px; display: grid; gap: 16px; align-content: start; }
+  .a-card .disp { font-size: 44px; }
+  .a-card .strip { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; height: 72px; }
+  .a-card .strip span:nth-child(1) { background: #1f6f5c; } .a-card .strip span:nth-child(2) { background: #f2c14e; }
+  .a-card .strip span:nth-child(3) { background: #f4efe6; } .a-card .strip span:nth-child(4) { background: #121212; }
+  .a-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
+  .a-card dt { color: #b5b5b0; }
+  .a-card pre { background: #2f2f2f; padding: 12px; font-size: 12px; line-height: 1.5; color: var(--mint); overflow-x: auto; }
+
+  /* ---------- B : Planche ---------- */
+  .b { --bg: #0d0d0d; --tile: #1b1b1b; --ink: #efefef; --red: #b11226; }
+  .b .disp { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.05em; line-height: 0.88; }
+  .b-hero { background: var(--bg); color: var(--ink); padding: 8px; display: grid; gap: 8px; grid-template-columns: repeat(6, 1fr); font-family: "Schibsted Grotesk", sans-serif; }
+  .b-hero > div { background: var(--tile); padding: 16px; min-height: 64px; }
+  .b-name { grid-column: 1 / -1; overflow: hidden; white-space: nowrap; padding: 0 !important; height: 128px; display: flex; align-items: center; justify-content: center; }
+  .b-name .disp { font-size: clamp(110px, 13vw, 180px); }
+  .b-link { grid-column: span 2; font-weight: 600; font-size: 14px; transition: background-color .2s ease; }
+  .b-link:hover { background: #262626 !important; }
+  .b-state { grid-column: span 4; grid-row: span 2; display: flex; flex-direction: column; justify-content: flex-end; }
+  .b-state p { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; max-width: 22ch; }
+  .b-sw { display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; }
+  .b-act { background: var(--red) !important; color: #fff; font-weight: 600; font-size: 16px; display: flex; align-items: flex-end; cursor: pointer; transition: transform .15s ease; }
+  .b-act:active { transform: scale(0.98); }
+  .b-card { background: var(--bg); color: var(--ink); padding: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: "Schibsted Grotesk", sans-serif; align-content: start; }
+  .b-card > div { background: var(--tile); padding: 16px; }
+  .b-card .wide { grid-column: 1 / -1; }
+  .b-card .disp { font-size: 40px; }
+  .b-card .aa { font: 800 72px/1 "Bricolage Grotesque"; letter-spacing: -0.05em; }
+  .b-card .btns { display: flex; gap: 8px; margin-top: 12px; }
+  .b-card .btns span { padding: 10px 14px; font-weight: 600; font-size: 13px; }
+
+  /* ---------- Jeux ---------- */
+  .games { margin-top: 96px; display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .games { grid-template-columns: repeat(3, 1fr); } }
+  .game { background: #fff; border-radius: 14px; padding: 24px; }
+  .game h3 { font: 800 28px/1 "Archivo", sans-serif; font-stretch: 75%; }
+  .game p { margin-top: 10px; }
+  .game .share { margin-top: 14px; padding: 10px 12px; background: #f1f1ec; font-size: 14px; white-space: pre-line; }
+
+  @media (max-width: 600px) {
+    .b-hero { grid-template-columns: repeat(2, 1fr); }
+    .b-link { grid-column: span 1; }
+    .b-state { grid-column: 1 / -1; grid-row: auto; min-height: 160px; }
+    .b-name { height: 96px; }
+    .b-name .disp { font-size: 26vw; }
+    .a-nav span { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="intro">
+    <h1>Craftly, deux directions</h1>
+    <p>Étape 2. Choisis A ou B (ou un mélange précis). Puis j'écris <code>design/tokens.css</code>. En bas : trois idées de jeu du jour.</p>
+  </section>
+
+  <!-- ====================== A ====================== -->
+  <section class="dir a">
+    <header>
+      <h2>A · Nuancier</h2>
+      <p><strong>Ambiance :</strong> un nuancier d'imprimeur posé sur un bureau clair ; la couleur du client entre dans la phrase comme un mot, et tout le reste se tait.</p>
+    </header>
+    <div class="grid">
+      <div class="box a-hero">
+        <div class="a-nav"><b>Craftly</b><span>Exemple · Tarifs · Connexion</span></div>
+        <p class="a-line disp">La charte
+          <button class="swatch" id="sw" aria-label="Changer la couleur d'exemple"><small id="swhex">#A1FFCB</small></button>
+          de vos clients</p>
+        <div class="a-foot">
+          <p>Couleurs, typos et composants d'un client, vus en direct, exportés en <code>variables.css</code>.</p>
+          <button class="a-btn">Créer un compte</button>
+        </div>
+      </div>
+      <div class="box meta">
+        <div><h3>Palette</h3>
+          <div class="chips">
+            <div class="chip"><span style="background:#f4f4f0;border:1px solid #ddd"></span><b>#F4F4F0</b><i>Fond papier</i></div>
+            <div class="chip"><span style="background:#232323"></span><b>#232323</b><i>Encre</i></div>
+            <div class="chip"><span style="background:#a1ffcb"></span><b>#A1FFCB</b><i>Menthe, l'action</i></div>
+            <div class="chip"><span style="background:#c9c9c2"></span><b>#C9C9C2</b><i>Gris carton</i></div>
+          </div></div>
+        <div class="spec"><h3>Titres</h3><span class="big disp">Archivo Condensed</span>800, étroit, capitales : la voix d'une affiche.</div>
+        <div class="spec"><h3>Texte</h3><span class="big" style="font-family:'Instrument Sans';font-size:32px">Instrument Sans</span>Net, moderne, très lisible en petit.</div>
+      </div>
+      <div class="box a-card" style="grid-column:1/-1">
+        <p class="disp">Carte : l'exemple de charte</p>
+        <div class="strip" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <dl><dt>Client</dt><dd>Fromagerie Vertbois</dd><dt>Titres</dt><dd>Fraunces 700</dd><dt>Texte</dt><dd>Work Sans 400</dd><dt>Rayon</dt><dd>4px, boutons pleins</dd></dl>
+        <pre>:root {
+  --color-primary: #1F6F5C;
+  --color-accent: #F2C14E;
+  --font-heading: "Fraunces", serif;
+  --radius: 4px;
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== B ====================== -->
+  <section class="dir b">
+    <header>
+      <h2>B · Planche</h2>
+      <p><strong>Ambiance :</strong> la planche de tendances épinglée au mur de l'atelier, le soir ; chaque tuile est une pièce de la charte, et le rouge carmin signe l'action.</p>
+    </header>
+    <div class="grid">
+      <div class="box b-hero">
+        <div class="b-name"><span class="disp">craftly craftly</span></div>
+        <div class="b-link">Exemple</div><div class="b-link">Tarifs</div><div class="b-link">Connexion</div>
+        <div class="b-state"><p>La charte graphique de vos clients, réglée en direct et prête à coller.</p></div>
+        <div class="b-sw" style="background:#efefef;color:#0d0d0d">Titres<b>Bricolage</b></div>
+        <div class="b-act">Créer un compte →</div>
+      </div>
+      <div class="box meta">
+        <div><h3>Palette</h3>
+          <div class="chips">
+            <div class="chip"><span style="background:#0d0d0d"></span><b>#0D0D0D</b><i>Fond nuit</i></div>
+            <div class="chip"><span style="background:#1b1b1b"></span><b>#1B1B1B</b><i>Tuile</i></div>
+            <div class="chip"><span style="background:#efefef;border:1px solid #ddd"></span><b>#EFEFEF</b><i>Craie</i></div>
+            <div class="chip"><span style="background:#b11226"></span><b>#B11226</b><i>Carmin, l'action</i></div>
+          </div></div>
+        <div class="spec"><h3>Titres</h3><span class="big" style="font:800 44px/1 'Bricolage Grotesque';letter-spacing:-0.05em">Bricolage Grotesque</span>Lourd, lettres serrées, un caractère d'atelier.</div>
+        <div class="spec"><h3>Texte</h3><span class="big" style="font-family:'Schibsted Grotesk';font-size:32px">Schibsted Grotesk</span>Grotesque chaleureuse, compacte, nette.</div>
+      </div>
+      <div class="box b-card" style="grid-column:1/-1">
+        <div class="wide"><p class="disp">Carte : l'exemple de charte</p></div>
+        <div style="background:#1f6f5c"><b>Primaire</b><br>#1F6F5C</div>
+        <div style="background:#f2c14e;color:#0d0d0d"><b>Accent</b><br>#F2C14E</div>
+        <div><span class="aa">Aa</span><br>Fraunces 700 · Work Sans</div>
+        <div>Composants<div class="btns"><span style="background:#1f6f5c">Plein</span><span style="outline:2px solid #f2c14e">Contour</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== Jeux ====================== -->
+  <section class="games" aria-labelledby="g">
+    <h2 id="g" style="grid-column:1/-1;font-size:32px">Jeu du jour : trois idées</h2>
+    <div class="game"><h3>La teinte du jour</h3>
+      <p>Une couleur s'affiche, la même pour tous. Tu as 5 essais pour retrouver son code HEX ; après chaque essai, on t'indique si chaque canal (rouge, vert, bleu) est trop haut ou trop bas.</p>
+      <div class="share">Craftly #12 · 🟩🟨🟥 → 🟩🟩🟨 → 🟩🟩🟩 · 3/5 🔥4</div></div>
+    <div class="game"><h3>Quelle police ?</h3>
+      <p>Un mot tiré au sort, composé dans une police mystère. Choisis parmi 4 noms ; à chaque erreur, un indice (empattements, époque, usage).</p>
+      <div class="share">Craftly #12 · Police trouvée en 2/4 🔥7</div></div>
+    <div class="game"><h3>Le bon contraste</h3>
+      <p>Un fond et une couleur de texte. Ajuste la luminosité du texte au plus juste pour passer WCAG AA (4,5:1), sans aller trop loin. Plus tu es proche du seuil, plus tu marques.</p>
+      <div class="share">Craftly #12 · 4,62:1 · 96 pts 🔥2</div></div>
+  </section>
+</main>
+<script>
+  // A : la pastille du héros change de couleur au clic (la « chose vivante »)
+  const tones = ["#A1FFCB", "#F2C14E", "#1F6F5C", "#E86A5A", "#C9C9C2"];
+  let i = 0;
+  const sw = document.getElementById("sw"), hex = document.getElementById("swhex");
+  sw.addEventListener("click", () => {
+    i = (i + 1) % tones.length;
+    sw.style.background = tones[i];
+    sw.style.color = ["#1F6F5C", "#E86A5A"].includes(tones[i]) ? "#fff" : "#232323";
+    hex.textContent = tones[i];
+  });
+</script>
+</body>
+</html>
