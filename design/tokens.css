@@ -1,0 +1,78 @@
+/* Craftly · direction B « Planche » : la planche de tendances épinglée au mur de l'atelier, le soir.
+   Polices à charger : Bricolage Grotesque (500–800) et Schibsted Grotesk (400, 600).
+   @theme : Tailwind en tire ses utilitaires (bg-accent, font-display…) et pose aussi chaque variable sur :root. */
+@theme {
+  /* Couleurs : un fond, une encre, une action */
+  --color-bg: #0d0d0d;          /* fond nuit */
+  --color-tile: #1b1b1b;        /* tuile, un cran au-dessus du fond */
+  --color-tile-hover: #262626;
+  --color-ink: #efefef;         /* craie : texte courant, en pleine encre */
+  --color-muted: #8c8c8c;       /* notes secondaires seulement */
+  --color-accent: #b11226;      /* carmin : l'action, et une seule autre chose par écran */
+  --color-accent-hover: #c8172e;
+  --color-accent-ink: #ffffff;
+  --color-field: #efefef;       /* tuile inversée */
+  --color-field-ink: #0d0d0d;
+  --color-danger: #ff6b6b;      /* erreurs de formulaire, lisible sur fond nuit */
+  --color-focus: #efefef;
+
+  /* Typographie */
+  /* --font-bricolage et --font-schibsted viennent de next/font (app/layout.tsx) */
+  --font-display: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-text: var(--font-schibsted), "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --weight-display: 800;
+  --weight-text: 400;
+  --weight-strong: 600;
+  --tracking-display: -0.05em;
+  --tracking-text: -0.01em;
+  --leading-display: 0.88;
+  --leading-text: 1.45;
+
+  /* Cinq tailles, pas une de plus */
+  --text-sm: 0.875rem;                          /* 14px : légendes, notes */
+  --text-base: 1.0625rem;                       /* 17px : texte courant */
+  --text-lg: clamp(1.25rem, 2.2vw, 1.75rem);    /* 20 → 28px : phrases de tuile */
+  --text-xl: clamp(2.5rem, 5vw, 4.5rem);        /* 40 → 72px : titres de section */
+  --text-2xl: clamp(6.5rem, 14.4vw, 13.75rem);  /* 104 → 220px : le nom en bandeau */
+
+  /* Espacements : grille de tuiles */
+  --space-gap: 8px;             /* entre tuiles */
+  --space-margin: 8px;          /* marges extérieures de la planche */
+  --space-tile: 20px;           /* padding intérieur d'une tuile */
+  --space-tile-lg: 24px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-section: clamp(120px, 14vw, 200px);
+  --row: 90px;                  /* unité de hauteur des tuiles */
+
+  /* Rayons : un seul, partout */
+  --radius: 6px;
+  --radius-full: 999px;         /* pastilles de couleur uniquement */
+
+  /* Ombres : rien au repos ; seulement ce qui flotte (menu, dialogue) */
+  --shadow-float: 0 12px 32px rgb(0 0 0 / 0.5);
+
+  /* Animations */
+  --duration-press: 120ms;      /* :active des boutons */
+  --duration-hover: 200ms;
+  --duration-enter: 500ms;      /* apparition au scroll */
+  --duration-stagger: 70ms;     /* décalage titre → texte → image */
+  --distance-enter: 24px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --press-scale: 0.97;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-enter: 0ms;
+    --duration-stagger: 0ms;
+    --distance-enter: 0px;
+    --press-scale: 1;
+  }
+}

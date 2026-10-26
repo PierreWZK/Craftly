@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Bricolage_Grotesque, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
-const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], weight: ["500", "800"], variable: "--font-bricolage" });
+const schibsted = Schibsted_Grotesk({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-schibsted" });
 
 export const metadata: Metadata = {
   title: "Craftly · La charte graphique d'un client, prête à intégrer",
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${jakarta.variable} ${caveat.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="fr" className={`${bricolage.variable} ${schibsted.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

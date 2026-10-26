@@ -1,24 +1,13 @@
 @import "tailwindcss";
-
-@theme {
-  --color-paper: #fafaf8;
-  --color-ink: #161a2e;
-  --color-muted: #5b6072;
-  --color-line: #e7e7ec;
-  --color-brand: #5b5bf0;
-  --color-brand-dark: #4646d6;
-  --color-brand-soft: #ececfe;
-  --color-blue: #2f5fe0;
-  --color-mint: #6fd3a5;
-  --color-teal: #12a58a;
-  --color-amber: #f8b42a;
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-hand: var(--font-caveat), cursive;
-}
+@import "../design/tokens.css";
 
 body {
-  background: var(--color-paper);
+  background: var(--color-bg);
   color: var(--color-ink);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-text);
+  letter-spacing: var(--tracking-text);
 }
 
 /* Apparition légère au scroll, sans JS ; ignorée si le navigateur ne gère pas view() */
@@ -32,6 +21,6 @@ body {
   }
 }
 @keyframes reveal {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(var(--distance-enter)); }
   to { opacity: 1; transform: none; }
 }

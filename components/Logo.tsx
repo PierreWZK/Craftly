@@ -2,7 +2,7 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
       <path d="M26 7.5A13 13 0 1 0 26 24.5L20.5 19a5.5 5.5 0 1 1 0-6Z" fill="currentColor" />
-      <circle cx="24.5" cy="16" r="3.5" fill="var(--color-brand)" />
+      <circle cx="24.5" cy="16" r="3.5" fill="var(--color-accent)" />
     </svg>
   );
 }
