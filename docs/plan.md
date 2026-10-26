@@ -19,7 +19,7 @@ Refonte de `/` avec les tokens : héros en tuiles (nom en bandeau, phrase, actio
 `src/lib/daily.ts` : couleur tirée de la date de Paris, notation par canal, texte à partager. Tuile de jeu sur la vitrine : 5 essais, une partie par jour, série 🔥 dans `localStorage`, bouton partager.
 **Terminé quand** les tests prouvent : même date = même couleur, date suivante = autre couleur, indices justes / trop haut / trop bas corrects ; une partie rejouée après actualisation reste terminée.
 
-## 5. [ ] Comptes
+## 5. [x] Comptes
 Better Auth + SQLite (`better-sqlite3`), pages `/inscription` et `/connexion`, déconnexion, `/app` redirige vers `/connexion` sans session. Limite de débit sur l'auth.
 **Terminé quand** un test d'intégration crée un compte, se connecte et reçoit une session ; `/app` sans cookie renvoie une redirection.
 
