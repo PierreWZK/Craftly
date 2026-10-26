@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { DailyGame } from "../components/DailyGame";
 import { KitPreview } from "../components/KitPreview";
 import { Logo } from "../components/Logo";
 
@@ -62,6 +63,10 @@ export default function Home() {
             Un exemple complet, pour un client fictif.
           </h2>
           <KitPreview />
+        </section>
+
+        <section id="jeu" className="reveal col-span-full mt-10 flex flex-col gap-4 px-2 pt-6">
+          <DailyGame />
         </section>
 
         <section id="comment" className="reveal col-span-full mt-10 grid gap-2 md:grid-cols-3">

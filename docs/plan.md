@@ -15,7 +15,7 @@ Type `BrandKit`, kit par défaut, `parseHex` (valide / normalise), `randomColor`
 Refonte de `/` avec les tokens : héros en tuiles (nom en bandeau, phrase, action carmin « Créer un compte »), exemple de charte complète d'un client fictif rendu par `buildCss`, fonctionnement en trois temps, gratuit, FAQ, appel final, pied de page avec lien « 30 jours, 30 projets ». Apparitions au scroll légères.
 **Terminé quand** aucune barre de défilement horizontale à 375 px et à 1440 px, aucun violet ni dégradé, capture mobile + desktop.
 
-## 4. [ ] La teinte du jour
+## 4. [x] La teinte du jour
 `src/lib/daily.ts` : couleur tirée de la date de Paris, notation par canal, texte à partager. Tuile de jeu sur la vitrine : 5 essais, une partie par jour, série 🔥 dans `localStorage`, bouton partager.
 **Terminé quand** les tests prouvent : même date = même couleur, date suivante = autre couleur, indices justes / trop haut / trop bas corrects ; une partie rejouée après actualisation reste terminée.
 
