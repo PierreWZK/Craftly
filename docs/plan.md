@@ -23,7 +23,7 @@ Refonte de `/` avec les tokens : héros en tuiles (nom en bandeau, phrase, actio
 Better Auth + SQLite (`better-sqlite3`), pages `/inscription` et `/connexion`, déconnexion, `/app` redirige vers `/connexion` sans session. Limite de débit sur l'auth.
 **Terminé quand** un test d'intégration crée un compte, se connecte et reçoit une session ; `/app` sans cookie renvoie une redirection.
 
-## 6. [ ] Éditeur
+## 6. [x] Éditeur
 `/app` : réglages à gauche, aperçu à droite (variables CSS posées sur son conteneur), HEX invalide signalé sans écraser la valeur, couleur au hasard, export : copie et téléchargement de `variables.css`.
 **Terminé quand** chaque réglage change l'aperçu immédiatement, le texte copié = le texte téléchargé = `buildCss(kit)`, l'outil reste utilisable à 375 px ; capture mobile + desktop.
 

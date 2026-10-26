@@ -1,27 +1,24 @@
 import { Copy } from "lucide-react";
-import { DEFAULT_KIT, buildCss } from "../src/lib/brand-kit";
+import { type BrandKit, DEFAULT_KIT, buildCss } from "../src/lib/brand-kit";
+import { fontsUrl } from "../src/lib/editor";
 
 // Le CSS vient du même générateur que l'éditeur : l'exemple montre exactement ce qui sera exporté.
 export const KIT_CSS = buildCss(DEFAULT_KIT);
-const scopedCss = KIT_CSS.replace(":root", ".kit-preview");
 
-const swatches = [
-  { label: "Primaire", value: DEFAULT_KIT.colors.primary, ink: "#ffffff" },
-  { label: "Secondaire", value: DEFAULT_KIT.colors.secondary, ink: "#1d1d1d" },
-  { label: "Accent", value: DEFAULT_KIT.colors.accent, ink: "#ffffff" },
-  { label: "Texte", value: DEFAULT_KIT.colors.text, ink: "#ffffff" },
-];
-
-/** La charte du client fictif : une grande tuile (typo, boutons, champ, carte) et une colonne de nuances. */
-export function KitPreview() {
+/** La charte d'un client : une grande tuile (typo, boutons, champ, carte) et une colonne de nuances. */
+export function KitPreview({ kit = DEFAULT_KIT }: { kit?: BrandKit }) {
+  const css = buildCss(kit).replace(":root", ".kit-preview");
+  const swatches = [
+    { label: "Principale", value: kit.colors.primary, ink: "#ffffff" },
+    { label: "Secondaire", value: kit.colors.secondary, ink: "#1d1d1d" },
+    { label: "Accent", value: kit.colors.accent, ink: "#ffffff" },
+    { label: "Texte", value: kit.colors.text, ink: "#ffffff" },
+  ];
   return (
     <div className="kit-preview flex gap-2" style={{ fontFamily: "var(--font-body)" }}>
       {/* Polices du client : chargées ici, car le site ne les utilise pas pour lui-même */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;600&display=swap"
-      />
-      <style dangerouslySetInnerHTML={{ __html: scopedCss }} />
+      <link rel="stylesheet" href={fontsUrl(kit)} />
+      <style dangerouslySetInnerHTML={{ __html: css }} />
 
       <div
         className="relative min-w-0 flex-1 overflow-hidden rounded-[var(--radius)] p-5 pr-16 md:p-7 md:pr-20"
@@ -38,9 +35,9 @@ export function KitPreview() {
           </span>
         </span>
 
-        <p className="text-sm opacity-70">{DEFAULT_KIT.client}</p>
+        <p className="text-sm opacity-70">{kit.client}</p>
         <p className="mt-1" style={{ fontFamily: "var(--font-heading)", fontSize: "var(--text-heading)", fontWeight: 700, lineHeight: 1.05, color: "var(--color-primary)" }}>
-          {DEFAULT_KIT.name}
+          {kit.name}
         </p>
         <p className="mt-4 max-w-md" style={{ fontSize: "var(--text-base)", lineHeight: 1.5 }}>
           Le texte courant suit la police de corps, à la taille de base du kit.
@@ -76,7 +73,7 @@ export function KitPreview() {
             Nom de la marque
             <input
               readOnly
-              value={DEFAULT_KIT.name}
+              value={kit.name}
               className="px-3 py-2"
               style={{
                 background: "var(--color-background)",

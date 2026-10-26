@@ -59,7 +59,7 @@ export function randomColor(random: () => number = Math.random): string {
   return `#${value.toString(16).padStart(6, "0")}`;
 }
 
-const BOUNDS = {
+export const BOUNDS = {
   heading: [20, 96],
   base: [12, 24],
   small: [10, 18],
