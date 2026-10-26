@@ -1,114 +1,109 @@
+import { Copy } from "lucide-react";
 import { DEFAULT_KIT, buildCss } from "../src/lib/brand-kit";
 
 // Le CSS vient du même générateur que l'éditeur : l'exemple montre exactement ce qui sera exporté.
-const css = buildCss(DEFAULT_KIT).replace(":root", ".kit-preview");
-
-// Un cran de ton au-dessus de la surface du client, pour séparer les blocs sans filet.
-const tile = {
-  background: "color-mix(in srgb, var(--color-text) 6%, var(--color-background))",
-  color: "var(--color-text)",
-  borderRadius: "var(--radius)",
-};
+export const KIT_CSS = buildCss(DEFAULT_KIT);
+const scopedCss = KIT_CSS.replace(":root", ".kit-preview");
 
 const swatches = [
-  { label: "Primaire", value: DEFAULT_KIT.colors.primary, token: "var(--color-primary)", ink: "#ffffff" },
-  { label: "Secondaire", value: DEFAULT_KIT.colors.secondary, token: "var(--color-secondary)", ink: "#1d1d1d" },
-  { label: "Accent", value: DEFAULT_KIT.colors.accent, token: "var(--color-accent)", ink: "#ffffff" },
-  { label: "Fond", value: DEFAULT_KIT.colors.background, token: "var(--color-background)", ink: "#1d1d1d" },
-  { label: "Texte", value: DEFAULT_KIT.colors.text, token: "var(--color-text)", ink: "#ffffff" },
+  { label: "Primaire", value: DEFAULT_KIT.colors.primary, ink: "#ffffff" },
+  { label: "Secondaire", value: DEFAULT_KIT.colors.secondary, ink: "#1d1d1d" },
+  { label: "Accent", value: DEFAULT_KIT.colors.accent, ink: "#ffffff" },
+  { label: "Texte", value: DEFAULT_KIT.colors.text, ink: "#ffffff" },
 ];
 
+/** La charte du client fictif : une grande tuile (typo, boutons, champ, carte) et une colonne de nuances. */
 export function KitPreview() {
   return (
-    <div
-      className="kit-preview rounded-[var(--radius)] p-2"
-      style={{ background: "var(--color-background)", color: "var(--color-text)", fontFamily: "var(--font-body)" }}
-    >
+    <div className="kit-preview flex gap-2" style={{ fontFamily: "var(--font-body)" }}>
       {/* Polices du client : chargées ici, car le site ne les utilise pas pour lui-même */}
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;600&display=swap"
       />
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <style dangerouslySetInnerHTML={{ __html: scopedCss }} />
 
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-12">
-        <div className="col-span-full flex flex-wrap items-end justify-between gap-4 p-5 md:p-6" style={tile}>
-          <div>
-            <p className="text-sm opacity-70">{DEFAULT_KIT.client}</p>
-            <p className="mt-1 text-[1.75rem] leading-none" style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "var(--color-primary)" }}>
-              {DEFAULT_KIT.name}
-            </p>
-          </div>
-          <span className="text-sm opacity-70">Exemple : charte complète</span>
-        </div>
-
-        {swatches.map((s) => (
-          <div
-            key={s.label}
-            className="col-span-1 flex flex-col justify-between gap-6 p-4 md:col-span-2"
-            style={{ background: s.token, color: s.ink, borderRadius: "var(--radius)" }}
+      <div
+        className="relative min-w-0 flex-1 overflow-hidden rounded-[var(--radius)] p-5 pr-16 md:p-7 md:pr-20"
+        style={{ background: "var(--color-background)", color: "var(--color-text)" }}
+      >
+        {/* Encoche : le rond se pose dans une découpe couleur de page */}
+        <span className="absolute right-0 top-0 rounded-bl-[var(--radius-notch)] bg-paper p-1.5">
+          <span
+            className="grid h-11 w-11 place-items-center rounded-full"
+            style={{ background: "var(--color-primary)", color: "#ffffff" }}
+            aria-hidden="true"
           >
-            <span className="text-sm font-semibold">{s.label}</span>
-            <span className="text-sm tabular-nums">{s.value}</span>
-          </div>
-        ))}
+            <Copy className="h-4 w-4" />
+          </span>
+        </span>
 
-        <div className="col-span-full grid gap-2 md:col-span-7 md:grid-cols-2">
-          <div className="p-5" style={tile}>
-            <p style={{ fontFamily: "var(--font-heading)", fontSize: "var(--text-heading)", fontWeight: 700, lineHeight: 1.05 }}>
-              Un titre de la charte
-            </p>
-            <p className="mt-4" style={{ fontSize: "var(--text-base)", lineHeight: 1.5 }}>
-              Le texte courant suit la police de corps, à la taille de base du kit.
-            </p>
-            <p className="mt-3" style={{ fontSize: "var(--text-small)" }}>
-              Petit texte, légendes et mentions.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 p-5" style={tile}>
-            <button
-              type="button"
-              className="px-5 py-3 text-left font-semibold"
+        <p className="text-sm opacity-70">{DEFAULT_KIT.client}</p>
+        <p className="mt-1" style={{ fontFamily: "var(--font-heading)", fontSize: "var(--text-heading)", fontWeight: 700, lineHeight: 1.05, color: "var(--color-primary)" }}>
+          {DEFAULT_KIT.name}
+        </p>
+        <p className="mt-4 max-w-md" style={{ fontSize: "var(--text-base)", lineHeight: 1.5 }}>
+          Le texte courant suit la police de corps, à la taille de base du kit.
+        </p>
+        <p className="mt-2" style={{ fontSize: "var(--text-small)", opacity: 0.75 }}>
+          Petit texte, légendes et mentions.
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          <button
+            type="button"
+            className="px-5 py-3 font-semibold"
+            style={{
+              background: "var(--color-primary)",
+              color: "#ffffff",
+              borderRadius: "var(--radius)",
+              border: "var(--button-border) solid var(--color-accent)",
+            }}
+          >
+            Bouton principal
+          </button>
+          <button
+            type="button"
+            className="border-2 px-5 py-3 font-semibold"
+            style={{ borderColor: "var(--color-secondary)", borderRadius: "var(--radius)" }}
+          >
+            Bouton secondaire
+          </button>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <label className="flex flex-col gap-1 text-sm">
+            Nom de la marque
+            <input
+              readOnly
+              value={DEFAULT_KIT.name}
+              className="px-3 py-2"
               style={{
-                background: "var(--color-primary)",
-                color: "#ffffff",
+                background: "var(--color-background)",
                 borderRadius: "var(--radius)",
-                border: "var(--button-border) solid var(--color-accent)",
-                fontFamily: "var(--font-body)",
+                border: "1px solid color-mix(in srgb, var(--color-text) 25%, var(--color-background))",
               }}
-            >
-              Bouton principal
-            </button>
-            <button
-              type="button"
-              className="border-2 px-5 py-3 text-left font-semibold"
-              style={{ borderColor: "var(--color-secondary)", color: "var(--color-text)", borderRadius: "var(--radius)", fontFamily: "var(--font-body)" }}
-            >
-              Bouton secondaire
-            </button>
-            <label className="flex flex-col gap-1 text-sm">
-              Nom de la marque
-              <input
-                readOnly
-                value={DEFAULT_KIT.name}
-                className="px-3 py-2"
-                style={{ background: "var(--color-background)", color: "var(--color-text)", borderRadius: "var(--radius)", border: "1px solid color-mix(in srgb, var(--color-text) 20%, var(--color-background))" }}
-              />
-            </label>
+            />
+          </label>
+          <div className="p-4" style={{ background: "var(--color-secondary)", borderRadius: "var(--radius)" }}>
+            <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.25rem" }}>Carte</p>
+            <p className="mt-1 text-sm">Même rayon que les boutons.</p>
           </div>
         </div>
-
-        <div className="col-span-full p-5 md:col-span-5" style={{ background: "var(--color-secondary)", color: "var(--color-text)", borderRadius: "var(--radius)" }}>
-          <p style={{ fontFamily: "var(--font-heading)", fontSize: "var(--text-heading)", fontWeight: 700, lineHeight: 1.05 }}>
-            Carte
-          </p>
-          <p className="mt-3">Une carte posée sur la couleur secondaire, avec le même rayon que les boutons.</p>
-        </div>
-
-        <pre className="col-span-full overflow-x-auto bg-ink p-5 text-sm leading-relaxed text-bg" style={{ borderRadius: "var(--radius)" }}>
-          <code>{buildCss(DEFAULT_KIT)}</code>
-        </pre>
       </div>
+
+      <ul className="flex w-16 shrink-0 flex-col gap-2 sm:w-20" aria-label="Couleurs de la charte">
+        {swatches.map((s) => (
+          <li
+            key={s.label}
+            className="flex flex-1 flex-col justify-end rounded-[var(--radius-sm)] p-2 text-[0.6875rem] leading-tight"
+            style={{ background: s.value, color: s.ink }}
+          >
+            <span className="font-semibold">{s.label}</span>
+            <span className="tabular-nums">{s.value}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

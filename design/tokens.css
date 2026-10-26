@@ -13,6 +13,9 @@
   --color-accent-ink: #ffffff;
   --color-field: #efefef;       /* tuile inversée */
   --color-field-ink: #0d0d0d;
+  --color-paper: #d9d9d6;       /* fond clair de la page : les tuiles sombres s'y posent */
+  --color-paper-ink: #1b1b1b;
+  --color-paper-muted: #55554f;
   --color-danger: #ff6b6b;      /* erreurs de formulaire, lisible sur fond nuit */
   --color-focus: #efefef;
 
@@ -51,8 +54,10 @@
   --row: 90px;                  /* unité de hauteur des tuiles */
 
   /* Rayons : un seul, partout */
-  --radius: 6px;
-  --radius-full: 999px;         /* pastilles de couleur uniquement */
+  --radius: 20px;               /* tuiles (maquette du 26/10 : grands panneaux arrondis) */
+  --radius-sm: 12px;            /* vignettes et champs dans une tuile */
+  --radius-notch: 28px;         /* découpe autour des encoches (rond, vignette) */
+  --radius-full: 999px;         /* pilules : navigation, boutons, pastilles */
 
   /* Ombres : rien au repos ; seulement ce qui flotte (menu, dialogue) */
   --shadow-float: 0 12px 32px rgb(0 0 0 / 0.5);

@@ -2,8 +2,8 @@
 @import "../design/tokens.css";
 
 body {
-  background: var(--color-bg);
-  color: var(--color-ink);
+  background: var(--color-paper);
+  color: var(--color-paper-ink);
   font-family: var(--font-text);
   font-size: var(--text-base);
   line-height: var(--leading-text);

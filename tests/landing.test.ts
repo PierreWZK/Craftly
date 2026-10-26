@@ -15,10 +15,18 @@ describe("vitrine Planche", () => {
     expect(page).not.toMatch(/violet|indigo|purple/i);
   });
 
-  it("n'a ni ombre au repos, ni coins arrondis hors du rayon de la charte, ni police monospace", () => {
+  it("n'a ni ombre au repos, ni coins arrondis hors des jetons (tuiles ou pilules), ni police monospace", () => {
     expect(page).not.toMatch(/shadow-/);
-    expect(page).not.toMatch(/rounded-(lg|xl|2xl|3xl|full)\b/);
+    expect(page).not.toMatch(/rounded-(sm|md|lg|xl|2xl|3xl)\b/);
     expect(page).not.toMatch(/font-mono/);
+  });
+
+  it("crédite chaque image publiée, et chaque image a un texte alternatif", () => {
+    const credits = read("CREDITS.md");
+    for (const src of page.match(/\/images\/[\w-]+\.jpg/g) ?? []) {
+      expect(credits).toContain(src.replace("/images/", ""));
+    }
+    expect(page).not.toMatch(/<Image(?![^>]*\balt=)/);
   });
 
   it("n'a ni numérotation ni libellé « Étape » au-dessus des titres", () => {

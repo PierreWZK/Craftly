@@ -35,7 +35,7 @@ function writeStore(store: Store) {
   }
 }
 
-const chip = "rounded-[var(--radius)] px-2 py-1 bg-tile";
+const chip = "rounded-full px-2.5 py-1 bg-bg";
 
 export function DailyGame() {
   const [today, setToday] = useState<string | null>(null);
@@ -87,7 +87,7 @@ export function DailyGame() {
 
   return (
     <div className="grid grid-cols-1 gap-2 md:grid-cols-12">
-      <div className="flex flex-col gap-4 rounded-[var(--radius)] bg-tile p-5 md:col-span-5 md:p-6">
+      <div className="flex flex-col gap-4 rounded-[var(--radius)] bg-tile p-5 text-ink md:col-span-5 md:p-6">
         <h2 className="font-display text-xl font-extrabold leading-[0.95] tracking-[-0.04em]">Teinte du jour</h2>
         <p className="text-muted">
           Une couleur, la même pour tout le monde aujourd'hui. Retrouvez son HEX en {MAX_ATTEMPTS} essais : chaque canal vous
@@ -98,7 +98,7 @@ export function DailyGame() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 rounded-[var(--radius)] bg-tile p-5 md:col-span-7 md:p-6">
+      <div className="flex flex-col gap-4 rounded-[var(--radius)] bg-tile p-5 text-ink md:col-span-7 md:p-6">
         {!finished ? (
           <form onSubmit={submit} className="flex flex-wrap items-end gap-3">
             <label className="flex flex-col gap-1 text-sm">
