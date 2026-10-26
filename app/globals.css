@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "../design/tokens.css";
+
+body {
+  background: var(--color-paper);
+  color: var(--color-paper-ink);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-text);
+  letter-spacing: var(--tracking-text);
+}
+
+/* Apparition légère au scroll, sans JS ; ignorée si le navigateur ne gère pas view() */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(var(--distance-enter)); }
+  to { opacity: 1; transform: none; }
+}
