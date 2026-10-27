@@ -5,14 +5,14 @@
 - **Source** : dépôt public `PierreWZK/Craftly`, branche **`master`**.
 - **Build** : `Dockerfile` à la racine (Node 22, sortie standalone de Next.js).
 - **Port exposé** : `3000`. **Domaine** : `https://craftly.projectp.fr`.
-- **Healthcheck** : `/` (la page d'accueil est statique).
+- **Healthcheck** : désactivé (`node:22-slim` n'a ni `curl` ni `wget`, le contrôle de Coolify dans le conteneur échouerait).
 - **Déploiement automatique** : à chaque push sur `master`. Les branches de travail ne sont pas déployées.
 
 ## 2. Variables d'environnement
 
 | Variable | Valeur |
 |---|---|
-| `BETTER_AUTH_SECRET` | **à saisir** : `openssl rand -base64 32`, puis coller. Ne jamais le commiter. |
+| `BETTER_AUTH_SECRET` | généré (32 octets aléatoires, base64) et déjà saisi dans Coolify. Ne jamais le commiter. |
 | `BETTER_AUTH_URL` | `https://craftly.projectp.fr` |
 
 `NODE_ENV`, `PORT`, `HOSTNAME` et `DATABASE_PATH` (`/data/craftly.db`) sont fixés dans l'image.
