@@ -1,6 +1,14 @@
 # Craftly · La charte graphique d'un client, prête à intégrer
 
-> Jour 14 du défi **30 jours, 30 projets** · Next.js · TypeScript · Tailwind CSS · ⏳ **À venir**
+🌐 **[craftly.projectp.fr](https://craftly.projectp.fr/)** · Jour 14 du défi **[30 jours, 30 projets](https://projectp.fr/)** · [Dépôt du défi](https://github.com/PierreWZK/30DaysProjects)
+
+Stack : Next.js, TypeScript, Tailwind CSS.
+
+[![Page d'accueil de Craftly](docs/preview-accueil.png)](https://craftly.projectp.fr/)
+
+<p align="center">
+  <img src="docs/preview-mobile.png" alt="Craftly sur téléphone" width="260">
+</p>
 
 Un outil pour freelances et petites agences : on saisit les couleurs, les typographies et quelques styles de composants d'un client, et **Craftly** en tire une mini-charte graphique interactive, avec un aperçu en direct et un `variables.css` prêt à coller dans le futur site.
 
@@ -54,3 +62,14 @@ Next.js · TypeScript · Tailwind CSS.
 - **Indexation** : `robots.txt`, `sitemap.xml`, balise canonical, données structurées JSON-LD (`WebApplication` rattachée à ProjectP) et lien « 30 jours, 30 projets » vers https://projectp.fr/ dans le pied de page. Vérifier en ligne, puis me rappeler de soumettre `https://craftly.projectp.fr/sitemap.xml` dans Google Search Console.
 - **Aperçu du lien** : image Open Graph stylisée 1200 × 630 aux couleurs du projet et balises `og:*` / `twitter:card`, vérifiées en ligne.
 - **Vitrine** : la mise à jour de `30days30projects` (README et `projects.js`) se fait **après ma validation**.
+
+---
+
+## Le défi 30 jours, 30 projets
+
+Un projet complet par jour pendant 30 jours, chacun en ligne sur son propre sous-domaine.
+
+- 🗂️ **Tous les projets** : [projectp.fr](https://projectp.fr/)
+- 💻 **Le dépôt du défi** : [github.com/PierreWZK/30DaysProjects](https://github.com/PierreWZK/30DaysProjects)
+- ⬅️ **Jour précédent** : [Radar, santé des sites](https://radar.projectp.fr/)
+- ➡️ **Jour suivant** : [Fugue, runner musical](https://fugue.projectp.fr/)
